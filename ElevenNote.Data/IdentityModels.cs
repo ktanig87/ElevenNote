@@ -33,8 +33,7 @@ namespace ElevenNote.Data
             return new ApplicationDbContext();
         }
         public DbSet<Note> Notes { get; set; }
-       
-            protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder
                 .Conventions
@@ -46,18 +45,17 @@ namespace ElevenNote.Data
                 .Add(new IdentityUserRoleConfiguration());
         }
     }
-}
-public class IdentityUserLoginConfiguration : EntityTypeConfiguration<IdentityUserLogin>
-{
-    public IdentityUserLoginConfiguration()
+    public class IdentityUserLoginConfiguration : EntityTypeConfiguration<IdentityUserLogin>
     {
-        HasKey(IdentityUserLogin => IdentityUserLogin.UserId);
+        public IdentityUserLoginConfiguration()
+        {
+            HasKey(IdentityUserLogin => IdentityUserLogin.UserId);
+        }
     }
-}
 
-public class IdentityUserRoleConfiguration : EntityTypeConfiguration<IdentityUserRole>
-{
-    public IdentityUserRoleConfiguration()
-    { HasKey(iur => iur.UserId); }
-}
+    public class IdentityUserRoleConfiguration : EntityTypeConfiguration<IdentityUserRole>
+    {
+        public IdentityUserRoleConfiguration()
+        { HasKey(iur => iur.UserId); }
+    }
 }
